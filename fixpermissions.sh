@@ -48,10 +48,8 @@ else
     sudo chmod +x dirname/minecraftbe/servername/bedrock_server
 
     NewestLog=$(find dirname/minecraftbe/servername/logs -type f -exec stat -c "%y %n" {} + | sort -r | head -n1 | cut -d " " -f 4-)
-    if [ -z "$NewestLog" ]; then
-      # No logs found
-      true
-    else
+    # Only display if a log exists
+    if [ -n "$NewestLog" ]; then
       echo "Displaying last 10 lines from log file $NewestLog in /logs folder:"
       tail -10 "$NewestLog"
     fi
